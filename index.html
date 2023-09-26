@@ -3,42 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wormy Project</title>
-    <script src="https://kit.fontawesome.com/ef9e95f3e5.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Signika+Negative">
-
+    <title>Split Screen</title>
     <style>
-        * {
-            color: white;
-            font-family: "Signika Negative";
-            text-align: center;
-            text-shadow: rgba(0, 1, 34, 0.301) .1vw 0 1vh;
-            overflow: hidden;
-        }
-
+        /* Adjust styles for the split screen layout */
         body {
             margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
             background-image: linear-gradient(to right, #87c7e2, #5d7abe);
             background-size: cover;
         }
 
-        #backsplash {
-            position: absolute;
-            width: 100vw;
-            height: auto;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-            filter: blur(5px);
-        }
-
-        #desc {
-            font-size: min(3.5vw, 30px);
-            width: calc(95% - 20vw);
-            margin: 0.5in 10vw;
+        iframe {
+            width: 50%;
+            height: 100vh;
+            border: none;
         }
 
         #rect {
@@ -47,67 +28,26 @@
             box-sizing: border-box;
             border: 0.3in solid white;
             margin: 0.25in;
+            position: absolute;
         }
 
-        #title {
-            font-size: min(9vw, 100px);
-            width: 95%;
-            margin: 0.5in auto;
-        }
+        @media only screen and (max-width: 700px) {
+            iframe {
+                width: 100vw
+            }
 
-        .link {
-            font-size: min(3vw, 30px);
-            border-bottom: .5vh solid white;
-            margin: 0 auto .3in auto;
-            width: max-content;
-        }
+            #rect {
+                height: calc((100vh - 0.25in) * 2);
+            }
 
-        .link *:last-child {
-            margin: 0 .1in;
-        }
-
-        a {
-            text-decoration: none;
         }
     </style>
 </head>
 
 <body>
-    <img id="backsplash" src="src/wormy.png">
-    <div id="rect">
-        <h1 id="title">The Wormy Project</h1>
-        <h2 id="desc">A project designed to get streamers and content creators to wish Wormy a happy birthday in
-            addition to other
-            occasions.</h2>
-        <a href="https://instagram.com/thewormyproject">
-            <div class="link">
-                <i class="fa-brands fa-instagram"></i>
-                Instagram
-                <i class="fa-solid fa-up-right-from-square"></i>
-            </div>
-        </a>
-        <a href="https://tiktok.com/@thewormyproject">
-            <div class="link">
-                <i class="fa-brands fa-tiktok"></i>
-                TikTok
-                <i class="fa-solid fa-up-right-from-square"></i>
-            </div>
-        </a>
-        <a href="https://twitter.com/thewormyproject">
-            <div class="link">
-                <i class="fa-brands fa-twitter"></i>
-                Twitter
-                <i class="fa-solid fa-up-right-from-square"></i>
-            </div>
-        </a>
-        <a href="https://youtube.com/@thewormyproject">
-            <div class="link">
-                <i class="fa-brands fa-youtube"></i>
-                YouTube
-                <i class="fa-solid fa-up-right-from-square"></i>
-            </div>
-        </a>
-    </div>
+    <iframe src="wormy.html"></iframe>
+    <iframe src="rapper.html"></iframe>
+    <div id="rect"></div>
 </body>
 
 </html>
