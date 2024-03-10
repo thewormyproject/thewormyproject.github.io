@@ -4,52 +4,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Split Screen</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Signika+Negative">
+    <script src="https://kit.fontawesome.com/ef9e95f3e5.js" crossorigin="anonymous"></script>
+    <title>The Wormy Project</title>
     <style>
-        /* Adjust styles for the split screen layout */
         body {
             margin: 0;
-            padding: 0;
+            display: inline;
+            color: white;
+            font-family: "Signika Negative";
+            overflow: hidden;
+            background-color: black;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        #outline {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: calc(100% - 0.5in);
+            height: calc(100% - 0.5in);
+            box-sizing: border-box;
+            border: 30px solid white;
+            margin: 0.25in;
+        }
+
+        .container {
             display: flex;
-            flex-wrap: wrap;
+        }
+
+        .section {
+            height: 100vh;
+            flex: 1;
+            padding-top: 100px;
+        }
+
+        #project {
+            padding-left: 90px;
+            padding-right: 30px;
             background-image: linear-gradient(to right, #87c7e2, #5d7abe);
             background-size: cover;
+            position: relative;
         }
 
-        iframe {
-            width: 50%;
-            height: 100vh;
-            border: none;
-        }
-
-        #rectmain {
-            width: calc(100vw - 0.5in);
-            height: calc(100vh - 0.5in);
-            box-sizing: border-box;
-            border: 0.3in solid white;
-            margin: 0.25in;
+        #wormy-decoration {
             position: absolute;
-            pointer-events: none;
+            width: 50vw;
+            height: auto;
+            top: 50%;
+            left: 0.25in;
+            transform: translate(0, -50%);
+            z-index: 0;
+            filter: blur(5px);
         }
 
-        @media only screen and (max-width: 700px) {
-            iframe {
-                width: 100vw
+        #project *:not(#wormy-decoration) {
+            z-index: 1;
+            position: relative;
+        }
+
+        h1 {
+            font-size: max(4vw, 40px);
+            text-align: center;
+        }
+
+        #infocontainer {
+            width: 80%;
+            text-align: center;
+            margin-left: 10%;
+            z-index: 1;
+        }
+
+        #rapper {
+            padding-right: 90px;
+            padding-left: 30px;
+        }
+
+        #rapper::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 25%;
+            width: 100%;
+            height: 100%;
+            background-image: url("src/mewmewmew.jpg");
+            background-size: contain;
+            background-position: center;
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        #songimage {
+            width: 50%;
+            max-width: 300px;
+            min-width: 200px;
+            height: 50%;
+            min-height: 200px;
+        }
+
+        #songcontainer {
+            padding-left: 20px;
+        }
+
+        h3 {
+            margin: 0;
+            color: #b6b6b6;
+            font-size: max(1.5vw, 20px);
+        }
+
+        h2 {
+            font-size: max(1.6vw, 20px);
+        }
+
+        #musiccontainer {
+            display: flex;
+        }
+
+        #songcontainer h2 {
+            margin: 0;
+            margin-bottom: 50px;
+        }
+
+        .linkcontainer {
+            margin-top: 30px;
+            display: flex;
+        }
+
+        a {
+            flex: 1;
+            text-align: center;
+            font-size: max(5vw, 40px);
+        }
+
+        @media only screen and (max-width: 949px) {
+            body {
+                overflow-x: hidden;
+                overflow-y: scroll;
             }
 
-            #rectmain {
-                height: calc((100vh - 0.25in) * 2);
+            #project {
+                width: 100vw;
+                height: calc(100vh - 0.5in);
+                padding-left: 0;
+                padding-right: 0;
             }
 
+            #rapper {
+                width: 100vw;
+                height: calc(100vh - 0.5in);
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            h1 {
+                font-size: max(6vw, 60px);
+            }
+
+            .section {
+                padding-top: 50px;
+            }
+
+            .container {
+                display: initial;
+            }
+
+            #musiccontainer {
+                display: flex;
+                justify-content: center;
+            }
+
+            .linkcontainer {
+                padding-top: 100px;
+                width: 50%;
+                transform: translate(50%, -50%);
+            }
+
+            a {
+                font-size: max(6vw, 60px);
+            }
+
+            #wormy-decoration {
+                width: 100vw;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            #rapper::before {
+                top: 0;
+                left: 0;
+            }
+
+            h3 {
+                font-size: max(2vw, 30px);
+            }
+
+            h2 {
+                font-size: max(3vw, 35px);
+            }
         }
     </style>
 </head>
 
 <body>
-    <div id="bodya"></div>
-    <iframe src="wormy.html"></iframe>
-    <iframe src="rapper.html"></iframe>
-    <div id="rectmain"></div>
+    <div class="container">
+        <div id="project" class="section">
+            <img id="wormy-decoration" src="src/wormy.png">
+            <h1>The Wormy Project</h1>
+            <h2 id="infocontainer">A project designed to get streamers and content creators to wish Wormy a happy
+                birthday in addition
+                to other occasions.</h2>
+            <div class="linkcontainer">
+                <a href="https://instagram.com/thewormyproject" target="_blank"><i
+                        class="fa-brands fa-instagram"></i></a>
+                <a href="https://tiktok.com/@thewormyproject" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://twitter.com/thewormyproject" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://youtube.com/@thewormyproject" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+        <div id="rapper" class="section">
+            <h1>Wormy The Rapper</h1>
+            <div id="musiccontainer">
+                <img id="songimage" src="src/mewmewmew.jpg">
+                <div id="songcontainer">
+                    <h3>Latest Release</h3>
+                    <h2>Mew Mew Mew</h2>
+                    <h3>Released On</h3>
+                    <h2>October 6</h2>
+                </div>
+            </div>
+            <div class="linkcontainer">
+                <a href="https://www.youtube.com/watch?v=Jb3W5K7dyaI" target="_blank"><i
+                        class="fa-brands fa-youtube"></i></a>
+                <a href="https://open.spotify.com/track/7jTf3HcFZ8nlxnG3wociW9" target="_blank"><i
+                        class="fa-brands fa-spotify"></i></a>
+                <a href="https://music.apple.com/us/album/mew-mew-mew-single/1725160114" target="_blank"><i
+                        class="fa-brands fa-itunes"></i></a>
+            </div>
+        </div>
+    </div>
+    <div id="outline"></div>
 </body>
 
 </html>
