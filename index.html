@@ -40,7 +40,7 @@
         .section {
             height: 100vh;
             flex: 1;
-            padding-top: 100px;
+            padding-top: 50px;
         }
 
         #project {
@@ -142,6 +142,8 @@
 
         @media only screen and (max-width: 949px) {
             body {
+                font-family: Arial, sans-serif;
+                font-weight: 0;
                 overflow-x: hidden;
                 overflow-y: scroll;
             }
@@ -161,7 +163,7 @@
             }
 
             h1 {
-                font-size: max(6vw, 60px);
+                font-size: max(6vw, 40px);
             }
 
             .section {
@@ -197,14 +199,33 @@
             #rapper::before {
                 top: 0;
                 left: 0;
+                background-size: cover;
             }
 
             h3 {
-                font-size: max(2vw, 30px);
+                font-size: max(2vw, 15px);
             }
 
             h2 {
-                font-size: max(3vw, 35px);
+                font-size: max(2.5vw, 20px);
+            }
+
+            #infocontainer {
+                display: flex;
+                justify-content: center;
+            }
+
+            #infocontainer h2 {
+                width: 80%;
+                font-size: max(3vw, 25px);
+            }
+
+            #songimage {
+                width: 40%;
+                max-width: 300px;
+                min-width: 200px;
+                height: 40%;
+                min-height: 200px;
             }
         }
     </style>
@@ -215,9 +236,11 @@
         <div id="project" class="section">
             <img id="wormy-decoration" src="src/wormy.png">
             <h1>The Wormy Project</h1>
-            <h2 id="infocontainer">A project designed to get streamers and content creators to wish Wormy a happy
-                birthday in addition
-                to other occasions.</h2>
+            <div id="infocontainer">
+                <h2>A project designed to get streamers and content creators to wish Wormy a happy
+                    birthday in addition
+                    to other occasions.</h2>
+            </div>
             <div class="linkcontainer">
                 <a href="https://instagram.com/thewormyproject" target="_blank"><i
                         class="fa-brands fa-instagram"></i></a>
@@ -248,6 +271,13 @@
         </div>
     </div>
     <div id="outline"></div>
+    <script>
+        // I'm a mrapper, not a programmer
+        function handleResize() {
+            if (window.innerWidth >= 950) window.scrollTo(0, 0);
+        }
+        window.addEventListener('resize', handleResize);
+    </script>
 </body>
 
 </html>
