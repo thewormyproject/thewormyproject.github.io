@@ -125,6 +125,12 @@
             width: 100%;
         }
 
+        #wormy-rapper .outline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         #wormy-desc {
             color: white;
             text-align: center;
@@ -154,17 +160,13 @@
         }
 
         .wormy-decoration {
-            position: fixed;
+            position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 100%;
             z-index: -2;
             filter: blur(8px);
-        }
-
-        #wormy-rapper .wormy-decoration {
-            left: 150%;
         }
 
         .square {
@@ -202,14 +204,15 @@
             margin: 0 min(6vw, 60px);
             height: 50%;
             overflow-y: scroll;
+            max-width: 1000px;
         }
 
         .track .track-name {
             text-align: center;
-            font-size: min(3vw, 24px);
+            font-size: clamp(17px, 3vw, 24px);
             font-weight: bold;
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .track .track-type {
@@ -227,22 +230,21 @@
 
         #artist-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             margin: min(6vw, 60px);
+            max-width: 1000px;
+            width: calc(100% - 2*min(6vw, 60px));
         }
 
         #artist-card {
             display: flex;
             justify-content: center;
-        }
-
-        #artist-desc {
-            margin-left: min(6vw, 40px);
+            gap: 2vw;
         }
 
         #artist-img {
-            width: 20vw;
-            height: 20vw;
+            width: 22vw;
+            height: 22vw;
             max-width: 200px;
             max-height: 200px;
             border-radius: 50%;
@@ -252,10 +254,12 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            text-align: center;
         }
 
         #artist-appearance {
             width: 22vw;
+            max-width: 200px;
         }
 
         #artist-mobile-links {
@@ -273,11 +277,14 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: #333;
-            border-radius: 24px;
+            border-radius: 2.5vw;
             color: white;
-            padding: 20px;
-            width: 78%;
+            padding: min(2.5vw, 30px);
+            width: 74%;
+            height: 18vw;
+            max-height: calc(18vw - min(2.5vw, 30px));
             max-width: calc(800px - 40px);
+            filter: drop-shadow(0 0 0.75rem rgb(0, 0, 0));
         }
 
         #popup.hidden {
@@ -286,35 +293,65 @@
 
         #popup-meta {
             display: flex;
+            height: 100%;
         }
 
         #popup-desc {
-            padding-left: 20px;
-            margin-right: 20px;
+            margin: 0 min(calc(2.3vw + 2px), 20px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         #popup-desc h1 {
-            margin-top: 0;
-            font-size: clamp(20px, 4vw, 36px);
+            margin: 0;
+            font-size: clamp(20px, 3.3vw, 36px);
         }
 
-        #popup-desc h2 {
+        #popup-desc h2,
+        #popup-desc h3 {
+            margin: 1vw 0 0 0;
             color: rgb(214, 214, 214);
-            font-size: clamp(14px, 2.5vw, 26px);
+            font-size: clamp(14px, 2.2vw, 22px);
             font-weight: normal;
         }
 
         #popup-img {
-            width: 20vw;
-            height: 20vw;
-            border-radius: 12px;
+            width: auto;
+            height: 100%;
+            max-width: 220px;
+            max-height: 220px;
+            border-radius: 1.5vw;
         }
 
         #popup-links {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            justify-content: space-around;
             text-align: center;
+            background-color: #262626;
+            border-radius: 1.5vw;
+            padding: 1vw;
+            height: calc(100% - 2vw);
+        }
+
+        #popup-links i {
+            font-size: min(4vw, 60px);
+
+        }
+
+        #popup-close {
+            position: fixed;
+            width: 1.75vw;
+            height: 1.75vw;
+            right: 1vw;
+            top: 1vw;
+            font-size: 3.25vw;
+            line-height: 1.75vw;
+        }
+
+        #popup-close:after {
+            content: "\00d7";
         }
 
         @media (max-width: 600px) {
@@ -344,6 +381,36 @@
                 text-decoration: none;
             }
 
+            #popup {
+                display: block;
+                height: auto;
+                max-height: calc(50vw - min(2.5vw, 30px));
+            }
+
+            #popup-meta {
+                height: 24vw;
+            }
+
+            #popup-links {
+                display: flex;
+                flex-direction: initial;
+                height: auto;
+                margin-top: 2.5vw;
+                padding: 2.5vw 4vw;
+            }
+
+            #popup-links i {
+                font-size: 12vw;
+            }
+
+            #popup-close {
+                width: 3vw;
+                height: 3vw;
+                right: 2vw;
+                top: 2vw;
+                font-size: 6vw;
+                line-height: 3vw;
+            }
         }
     </style>
 </head>
@@ -431,7 +498,7 @@
                         <p class="track-name">Mew Mew Mew</p>
                         <div>
                             <div class="square mewmewmew"></div>
-                            <p class="track-type">SINGLE</p>
+                            <p class="track-type">CLOSE</p>
                         </div>
                     </div>
                 </div>
@@ -441,11 +508,15 @@
 
 
     <div id="popup" class="hidden">
+        <div id="popup-close"></div>
         <div id="popup-meta">
             <img src="" id="popup-img">
             <div id="popup-desc">
-                <h1>song title</h1>
-                <h2>song artists</h2>
+                <div>
+                    <h1>song title</h1>
+                    <h2>song artists</h2>
+                </div>
+                <h3>released on</h3>
             </div>
         </div>
         <div id="popup-links">
@@ -539,6 +610,7 @@
             "meowch": {
                 "name": "Meowch",
                 "artist": "Wormy The Rapper, Young Steppa",
+                "date": "June 24, 2023",
                 "link": {
                     "youtube": "https://youtu.be/7T6M0rS5aY8",
                 }
@@ -546,6 +618,7 @@
             "mewmewmew": {
                 "name": "Mew Mew Mew",
                 "artist": "Wormy The Rapper",
+                "date": "Oct. 6, 2023",
                 "link": {
                     "itunes": "https://music.apple.com/gb/album/mew-mew-mew/1725160114",
                     "spotify": "https://open.spotify.com/track/7jTf3HcFZ8nlxnG3wociW9",
@@ -555,6 +628,7 @@
             "stargazing": {
                 "name": "Stargazing",
                 "artist": "Wormy The Rapper",
+                "date": "Apr. 29, 2024",
                 "link": {
                     "itunes": "https://music.apple.com/gb/album/stargazing/1744031497",
                     "spotify": "https://open.spotify.com/track/4bl3iDD1SNmalJwfMhZKwF",
@@ -567,9 +641,13 @@
         const popupImg = document.querySelector('#popup-img');
         const popupTitle = document.querySelector('#popup-desc h1');
         const popupArtist = document.querySelector('#popup-desc h2');
+        const popupDate = document.querySelector('#popup-desc h3');
         const popupLinks = document.querySelector('#popup-links');
 
         function showPopup(song) {
+            container.onselectstart = function (event) {
+                return false;
+            };
             let songData = songs[song];
 
             container.style.filter = "blur(10px)";
@@ -578,6 +656,7 @@
             popupImg.src = "src/" + (song + ".jpg").toString();
             popupTitle.textContent = songData.name;
             popupArtist.textContent = songData.artist;
+            popupDate.textContent = songData.date;
 
             popupLinks.replaceChildren();
             Object.entries(songData.link).forEach(([key, value]) => {
@@ -594,6 +673,15 @@
             });
         }
 
+        function closePopup() {
+            container.style.filter = "";
+            popup.classList.add("hidden");
+
+            container.onselectstart = function (event) {
+                return true;
+            };
+        }
+
         document.addEventListener('click', function (event) {
             if (event.target !== popup && !popup.classList.contains("hidden")) {
                 let isChild = false;
@@ -604,11 +692,17 @@
                     }
                 }
                 if (!popup.contains(event.target) && !isChild) {
-                    container.style.filter = "";
-                    popup.classList.add("hidden");
+                    closePopup()
                 }
             }
         });
+
+        document.querySelector("#popup-close").onclick = function () {
+            closePopup()
+        }
+
+        toggleTabs("wormy-rapper")
+        showPopup("meowch")
     </script>
 </body>
 
